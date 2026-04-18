@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Custom styles for the trading dashboard */
+@theme {
+  --color-bull: #34d399;
+  --color-bear: #f87171;
+  --color-surface: #0f1117;
+  --color-card: #161a25;
+  --color-card-hover: #1c2133;
+  --color-border: #2a2f3e;
+}
+
+/* Smooth scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+/* Glowing pulse animation for live indicator */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
