@@ -7,7 +7,18 @@ All settings can also be updated at runtime via the /api/config endpoint.
 HOW TO USE:
 - Change any value below and restart the backend, OR
 - Use the config panel in the UI to change settings without restarting
+
+SECRET MANAGEMENT:
+- Sensitive credentials (API keys) are loaded from environment variables
+- Copy .env.example to .env and fill in your actual credentials
+- NEVER commit .env to version control
 """
+
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file (if it exists)
+load_dotenv()
 
 # ─── DATA PROVIDER ─────────────────────────────────────────────────────────────
 # Which service to pull stock data from:
@@ -22,9 +33,10 @@ DATA_PROVIDER = "alpaca"
 # Alpaca API credentials (only needed if DATA_PROVIDER = "alpaca")
 # 1. Sign up free at https://alpaca.markets
 # 2. Go to Paper Trading → API Keys → Generate
-# 3. Paste your keys below
-ALPACA_API_KEY = "PKLFSTPKHV3YJQYRZUVHTF6YCO"
-ALPACA_SECRET_KEY = "55qpzNDDLizzFcrgHSaJs6ZDydwEDeP9RhNEwZGRrHzt"
+# 3. Set environment variables ALPACA_API_KEY and ALPACA_SECRET_KEY
+#    or add them to .env file (copy from .env.example)
+ALPACA_API_KEY = os.getenv("ALPACA_API_KEY", "")
+ALPACA_SECRET_KEY = os.getenv("ALPACA_SECRET_KEY", "")
 ALPACA_BASE_URL = "https://paper-api.alpaca.markets"
 
 # Alpaca data feed:
@@ -36,8 +48,8 @@ ALPACA_DATA_FEED = "iex"
 
 # Polygon.io (Massive) API key (only needed if DATA_PROVIDER = "polygon")
 # 1. Sign up free at https://polygon.io (now https://massive.com)
-# 2. Go to Dashboard → API Keys
-# 3. Paste your key below
+# 2. Set environment variable POLYGON_API_KEY or add to .env file
+POLYGON_API_KEY = os.getenv("POLYGON_API_KEY", "")below
 POLYGON_API_KEY = ""
 
 # ─── STOCK DISCOVERY (DYNAMIC) ────────────────────────────────────────────────
